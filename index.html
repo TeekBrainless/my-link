@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello there! 👀</title>
-    <!-- ใช้ฟอนต์ Anuphan สำหรับความ Minimal และเรียบง่าย -->
     <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -38,7 +37,7 @@
 
         .doodle-bg svg {
             position: absolute;
-            opacity: 0.1; /* ลดความเข้มลงอีกนิดให้ดูคลีน */
+            opacity: 0.1; 
         }
 
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
@@ -52,13 +51,13 @@
             position: relative;
             z-index: 10;
             background: var(--card-bg);
-            border: 1px solid var(--ink); /* เส้นบางลง */
-            border-radius: 16px; /* มนมากขึ้นแบบ Modern Minimal */
+            border: 1px solid var(--ink); 
+            border-radius: 16px; 
             padding: 48px 32px;
             width: 88%;
             max-width: 320px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03); /* เปลี่ยนจากเงาแข็งเป็นเงานุ่ม */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03); 
             animation: fadeUp 0.6s ease forwards;
         }
 
@@ -125,14 +124,14 @@
         <svg class="d5" width="60" height="24" viewBox="0 0 60 24"><path d="M0 12 C10 4, 20 20, 30 12 S50 4, 60 12" fill="none" stroke="#1a1a1a" stroke-width="1.5"/></svg>
     </div>
 
-    <!-- หน้าแรก: สะอาดตา ไม่มี Tag -->
+    <!>
     <div class="card" id="landing-page">
         <h2>ฮั่นแน่...<br>แอบเข้ามาส่องหรอ</h2>
         <p class="subtitle">แอบชอบปะเนี่ย? 👀</p>
         <button class="btn" onclick="startPrank()">ยอมรับมาซะดีๆ →</button>
     </div>
 
-    <!-- หน้าแกล้ง: เน้นความคลีน -->
+    <!>
     <div class="card" id="prank-content">
         <h2 style="color: var(--accent);">เขินจัง... ☺</h2>
         <div class="gif-wrap">
