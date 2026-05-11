@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song for You 🎵</title>
+    <title>Hello there! 👀</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Sarabun:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -42,7 +42,6 @@
             opacity: 0.13;
         }
 
-        /* floating doodle animation */
         @keyframes floatA { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-12px) rotate(4deg)} }
         @keyframes floatB { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-8px) rotate(-5deg)} }
         @keyframes floatC { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-15px) rotate(3deg)} }
@@ -53,10 +52,6 @@
         .d4{bottom:18%;right:5%;animation:floatA 4.5s ease-in-out infinite;}
         .d5{top:38%;left:2%;animation:floatB 8s ease-in-out infinite;}
         .d6{top:45%;right:3%;animation:floatC 5.5s ease-in-out infinite;}
-        .d7{top:68%;left:30%;animation:floatA 6.5s ease-in-out infinite;}
-        .d8{top:20%;left:35%;animation:floatB 7.5s ease-in-out infinite;}
-        .d9{bottom:5%;right:28%;animation:floatC 5s ease-in-out infinite;}
-        .d10{top:5%;left:55%;animation:floatA 6s ease-in-out infinite;}
 
         /* ── Card ── */
         .card {
@@ -70,9 +65,9 @@
             max-width: 340px;
             text-align: center;
             box-shadow: 5px 5px 0px var(--ink);
+            animation: fadeUp 0.5s ease forwards;
         }
 
-        /* ── Landing Page ── */
         .label {
             font-family: 'Caveat', cursive;
             font-size: 13px;
@@ -83,16 +78,9 @@
             display: block;
         }
 
-        .icon-wrap {
-            font-size: 38px;
-            margin-bottom: 14px;
-            display: block;
-            animation: floatA 3s ease-in-out infinite;
-        }
-
         h2 {
             font-family: 'Caveat', cursive;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: var(--ink);
             margin-bottom: 10px;
@@ -100,9 +88,9 @@
         }
 
         .subtitle {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.7;
+            font-family: 'Caveat', cursive;
+            font-size: 22px;
+            color: var(--accent);
             margin-bottom: 32px;
         }
 
@@ -113,13 +101,12 @@
             border: 2px solid var(--ink);
             padding: 13px 28px;
             font-family: 'Caveat', cursive;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
             cursor: pointer;
             border-radius: 2px;
             width: 100%;
-            transition: background 0.2s, color 0.2s, transform 0.1s;
-            letter-spacing: 0.5px;
+            transition: 0.2s;
         }
 
         .btn:hover {
@@ -129,46 +116,7 @@
             box-shadow: 4px 4px 0 var(--ink);
         }
 
-        .btn:active { transform: translate(0,0); box-shadow: none; }
-
-        .divider {
-            width: 40px;
-            height: 2px;
-            background: var(--ink);
-            margin: 20px auto;
-        }
-
-        /* ── Prank Content ── */
         #prank-content { display: none; }
-
-        .prank-tag {
-            font-family: 'Caveat', cursive;
-            font-size: 13px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            background: var(--accent);
-            color: white;
-            padding: 3px 10px;
-            display: inline-block;
-            margin-bottom: 18px;
-            border-radius: 2px;
-        }
-
-        .prank-title {
-            font-family: 'Caveat', cursive;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .prank-sub {
-            font-family: 'Caveat', cursive;
-            font-size: 20px;
-            color: var(--muted);
-            margin-bottom: 20px;
-        }
 
         .gif-wrap {
             border: 2px solid var(--ink);
@@ -178,129 +126,83 @@
             box-shadow: 3px 3px 0 var(--ink);
         }
 
-        .gif-wrap img {
-            width: 100%;
-            display: block;
-        }
+        .gif-wrap img { width: 100%; display: block; }
 
-        /* blink replaced with subtle pulse */
-        @keyframes pulse {
-            0%,100%{ transform: scale(1); }
-            50%{ transform: scale(1.05); }
-        }
-
-        .caught-badge {
-            display: inline-block;
-            font-family: 'Caveat', cursive;
-            font-size: 14px;
-            font-weight: 600;
-            border: 2px dashed var(--accent);
-            color: var(--accent);
-            padding: 6px 14px;
-            border-radius: 2px;
-            animation: pulse 2s ease-in-out infinite;
-            margin-top: 4px;
-        }
-
-        /* ── Page fade-in ── */
         @keyframes fadeUp {
             from { opacity:0; transform: translateY(16px); }
             to   { opacity:1; transform: translateY(0); }
         }
-
-        .card { animation: fadeUp 0.5s ease forwards; }
-
     </style>
 </head>
-<body>
+<body onload="trackInstant()">
 
-    <!-- ── Doodle Background ── -->
     <div class="doodle-bg">
-
-        <!-- music note -->
         <svg class="d1" width="48" height="48" viewBox="0 0 48 48"><text y="38" font-size="40">♪</text></svg>
-        <!-- star -->
-        <svg class="d2" width="44" height="44" viewBox="0 0 44 44"><polygon points="22,2 27,17 44,17 30,27 35,42 22,32 9,42 14,27 0,17 17,17" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linejoin="round"/></svg>
-        <!-- heart -->
+        <svg class="d2" width="44" height="44" viewBox="0 0 44 44"><polygon points="22,2 27,17 44,17 30,27 35,42 22,32 9,42 14,27 0,17 17,17" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg>
         <svg class="d3" width="40" height="36" viewBox="0 0 40 36"><path d="M20 33 C20 33 2 22 2 10 C2 4 7 1 13 4 C16 5 18 8 20 10 C22 8 24 5 27 4 C33 1 38 4 38 10 C38 22 20 33 20 33Z" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg>
-        <!-- double music note -->
-        <svg class="d4" width="52" height="48" viewBox="0 0 52 48"><text y="38" font-size="40">♫</text></svg>
-        <!-- wavy line -->
-        <svg class="d5" width="60" height="24" viewBox="0 0 60 24"><path d="M0 12 C10 4, 20 20, 30 12 S50 4, 60 12" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round"/></svg>
-        <!-- small star doodle -->
-        <svg class="d6" width="30" height="30" viewBox="0 0 30 30"><line x1="15" y1="0" x2="15" y2="30" stroke="#1a1a1a" stroke-width="2"/><line x1="0" y1="15" x2="30" y2="15" stroke="#1a1a1a" stroke-width="2"/><line x1="4" y1="4" x2="26" y2="26" stroke="#1a1a1a" stroke-width="2"/><line x1="26" y1="4" x2="4" y2="26" stroke="#1a1a1a" stroke-width="2"/></svg>
-        <!-- circle -->
-        <svg class="d7" width="38" height="38" viewBox="0 0 38 38"><circle cx="19" cy="19" r="16" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-dasharray="6 4"/></svg>
-        <!-- arrow -->
-        <svg class="d8" width="44" height="30" viewBox="0 0 44 30"><path d="M2 15 L32 15 M22 5 L32 15 L22 25" fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <!-- flower -->
-        <svg class="d9" width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="5" fill="none" stroke="#1a1a1a" stroke-width="2"/><ellipse cx="20" cy="9" rx="4" ry="6" fill="none" stroke="#1a1a1a" stroke-width="1.5"/><ellipse cx="20" cy="31" rx="4" ry="6" fill="none" stroke="#1a1a1a" stroke-width="1.5"/><ellipse cx="9" cy="20" rx="6" ry="4" fill="none" stroke="#1a1a1a" stroke-width="1.5"/><ellipse cx="31" cy="20" rx="6" ry="4" fill="none" stroke="#1a1a1a" stroke-width="1.5"/></svg>
-        <!-- music note small -->
-        <svg class="d10" width="36" height="36" viewBox="0 0 36 36"><text y="28" font-size="28">♩</text></svg>
-
+        <svg class="d5" width="60" height="24" viewBox="0 0 60 24"><path d="M0 12 C10 4, 20 20, 30 12 S50 4, 60 12" fill="none" stroke="#1a1a1a" stroke-width="2.5"/></svg>
     </div>
 
-    <!-- ── Landing Page ── -->
+    <!-- หน้าแรก -->
     <div class="card" id="landing-page">
-        <span class="label">✦ for you ✦</span>
-        <span class="icon-wrap">🎵</span>
-        <h2>สุ่มเพลงให้คุณ</h2>
-        <div class="divider"></div>
-        <p class="subtitle">ให้ AI วิเคราะห์ความรู้สึกตอนนี้<br>แล้วเลือกเพลงที่ใช่สำหรับคุณ</p>
-        <button class="btn" onclick="startPrank()">กดเพื่อสุ่มเพลง →</button>
+        <span class="label">✦ Caught you! ✦</span>
+        <h2>ฮั่นแน่...<br>แอบเข้ามาส่องหรอ</h2>
+        <p class="subtitle">แอบชอบปะเนี่ย? 👀</p>
+        <button class="btn" onclick="startPrank()">ยอมรับมาซะดีๆ →</button>
     </div>
 
-    <!-- ── Prank Page ── -->
+    <!-- หน้าแกล้ง -->
     <div class="card" id="prank-content">
-        <span class="prank-tag">🎉 โป๊ะแตก</span>
-        <h2 class="prank-title">แอบชอบหรอ?</h2>
-        <p class="prank-sub">กดเข้ามาเอง ใครจะรู้~ 👀</p>
+        <span class="label">✦ Gotcha! ✦</span>
+        <h2 style="color: var(--accent);">เขินจัง... ☺</h2>
         <div class="gif-wrap">
-            <img src="https://media.giphy.com/media/3o7TKVUn7iM8FMEU24/giphy.gif" alt="caught">
+            <!-- ใส่ URL รูปภาพของคุณตรง src ด้านล่างนี้ -->
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJndnY4ZzRyeHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKVUn7iM8FMEU24/giphy.gif" alt="shy">
         </div>
-        <span class="caught-badge">📌 หลักฐานครบ ไม่ต้องแก้ตัว</span>
+        <p style="font-family: 'Caveat', cursive; font-size: 18px;">หลักฐานคามือ ลบไม่ทันแล้วนะ!</p>
+        
         <audio id="bgMusic" loop>
             <source src="music.mp3" type="audio/mpeg">
         </audio>
     </div>
 
     <script>
-        async function startPrank() {
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbw--SRjfQUmbEvc7aJa9NPDxV6MhhNPbJT11Opn9GEaT6S3zPPRKAazv8XrrzGIGpn4/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbw--SRjfQUmbEvc7aJa9NPDxV6MhhNPbJT11Opn9GEaT6S3zPPRKAazv8XrrzGIGpn4/exec';
 
+        function trackInstant() {
+            sendToSheet("Opened Page (No Click)");
+        }
+
+        async function startPrank() {
             let ipInfo = { ip: "Checking...", city: "Unknown" };
             try {
                 const res = await fetch('https://ipapi.co/json/');
                 ipInfo = await res.json();
-            } catch (e) { console.log("Skip IP"); }
+            } catch (e) {}
 
-            const payload = {
-                ip: ipInfo.ip,
-                city: ipInfo.city,
-                device: navigator.userAgent,
-                platform: "IG-Bio-Link"
-            };
+            sendToSheet("CLICKED BUTTON!", ipInfo);
 
-            fetch(scriptURL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify(payload)
-            });
-
-            // transition
             const landing = document.getElementById('landing-page');
-            landing.style.opacity = '0';
-            landing.style.transition = 'opacity 0.3s ease';
-            setTimeout(() => {
-                landing.style.display = 'none';
-                const prank = document.getElementById('prank-content');
-                prank.style.display = 'block';
-                prank.style.opacity = '0';
-                prank.style.transition = 'opacity 0.4s ease';
-                setTimeout(() => { prank.style.opacity = '1'; }, 50);
-            }, 300);
+            landing.style.display = 'none';
+            const prank = document.getElementById('prank-content');
+            prank.style.display = 'block';
 
-            try { document.getElementById('bgMusic').play(); } catch(e) {}
+            try { 
+                const music = document.getElementById('bgMusic');
+                // ถ้าต้องการเลือกเวลาเริ่มเพลง ให้ใส่บรรทัดล่างนี้ (หน่วยเป็นวินาที)
+                // music.currentTime = 10; 
+                music.play(); 
+            } catch(e) {}
+        }
+
+        function sendToSheet(status, ipData = null) {
+            const payload = {
+                ip: ipData ? ipData.ip : "Visitor",
+                city: ipData ? ipData.city : "Landing",
+                device: navigator.userAgent,
+                platform: status
+            };
+            fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
         }
     </script>
 </body>
