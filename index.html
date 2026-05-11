@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello there! 👀</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Sarabun:wght@300;400&display=swap" rel="stylesheet">
+    <!-- ใช้ฟอนต์ Anuphan สำหรับความ Minimal และเรียบง่าย -->
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --ink: #1a1a1a;
             --soft: #f5f2ed;
             --accent: #ff6b6b;
-            --accent2: #ffd93d;
-            --muted: #888;
             --card-bg: #fffef9;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: 'Sarabun', sans-serif;
+            font-family: 'Anuphan', sans-serif;
             background-color: var(--soft);
             display: flex;
             justify-content: center;
@@ -39,97 +38,80 @@
 
         .doodle-bg svg {
             position: absolute;
-            opacity: 0.13;
+            opacity: 0.1; /* ลดความเข้มลงอีกนิดให้ดูคลีน */
         }
 
-        @keyframes floatA { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-12px) rotate(4deg)} }
-        @keyframes floatB { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-8px) rotate(-5deg)} }
-        @keyframes floatC { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-15px) rotate(3deg)} }
-
-        .d1{top:5%;left:4%;animation:floatA 5s ease-in-out infinite;}
-        .d2{top:12%;right:6%;animation:floatB 6s ease-in-out infinite;}
-        .d3{bottom:10%;left:8%;animation:floatC 7s ease-in-out infinite;}
-        .d4{bottom:18%;right:5%;animation:floatA 4.5s ease-in-out infinite;}
-        .d5{top:38%;left:2%;animation:floatB 8s ease-in-out infinite;}
-        .d6{top:45%;right:3%;animation:floatC 5.5s ease-in-out infinite;}
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        .d1{top:5%;left:4%;animation:float 5s infinite;}
+        .d2{top:12%;right:6%;animation:float 6s infinite;}
+        .d3{bottom:10%;left:8%;animation:float 7s infinite;}
+        .d5{top:38%;left:2%;animation:float 8s infinite;}
 
         /* ── Card ── */
         .card {
             position: relative;
             z-index: 10;
             background: var(--card-bg);
-            border: 2px solid var(--ink);
-            border-radius: 4px;
-            padding: 44px 36px;
-            width: 90%;
-            max-width: 340px;
+            border: 1px solid var(--ink); /* เส้นบางลง */
+            border-radius: 16px; /* มนมากขึ้นแบบ Modern Minimal */
+            padding: 48px 32px;
+            width: 88%;
+            max-width: 320px;
             text-align: center;
-            box-shadow: 5px 5px 0px var(--ink);
-            animation: fadeUp 0.5s ease forwards;
-        }
-
-        .label {
-            font-family: 'Caveat', cursive;
-            font-size: 13px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 18px;
-            display: block;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03); /* เปลี่ยนจากเงาแข็งเป็นเงานุ่ม */
+            animation: fadeUp 0.6s ease forwards;
         }
 
         h2 {
-            font-family: 'Caveat', cursive;
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 600;
             color: var(--ink);
-            margin-bottom: 10px;
-            line-height: 1.2;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            letter-spacing: -0.5px;
         }
 
         .subtitle {
-            font-family: 'Caveat', cursive;
-            font-size: 22px;
+            font-size: 16px;
             color: var(--accent);
             margin-bottom: 32px;
+            font-weight: 400;
         }
 
         .btn {
             display: inline-block;
             background: var(--ink);
             color: white;
-            border: 2px solid var(--ink);
-            padding: 13px 28px;
-            font-family: 'Caveat', cursive;
-            font-size: 20px;
-            font-weight: 600;
+            border: none;
+            padding: 15px 24px;
+            font-family: 'Anuphan', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
             cursor: pointer;
-            border-radius: 2px;
+            border-radius: 10px;
             width: 100%;
-            transition: 0.2s;
+            transition: all 0.3s;
         }
 
         .btn:hover {
             background: var(--accent);
-            border-color: var(--accent);
-            transform: translate(-2px, -2px);
-            box-shadow: 4px 4px 0 var(--ink);
+            transform: translateY(-2px);
         }
 
+        /* ── Prank Content ── */
         #prank-content { display: none; }
 
         .gif-wrap {
-            border: 2px solid var(--ink);
-            border-radius: 4px;
+            border-radius: 12px;
             overflow: hidden;
-            margin: 16px 0;
-            box-shadow: 3px 3px 0 var(--ink);
+            margin: 20px 0;
+            border: 1px solid #eee;
         }
 
         .gif-wrap img { width: 100%; display: block; }
 
         @keyframes fadeUp {
-            from { opacity:0; transform: translateY(16px); }
+            from { opacity:0; transform: translateY(20px); }
             to   { opacity:1; transform: translateY(0); }
         }
     </style>
@@ -138,28 +120,25 @@
 
     <div class="doodle-bg">
         <svg class="d1" width="48" height="48" viewBox="0 0 48 48"><text y="38" font-size="40">♪</text></svg>
-        <svg class="d2" width="44" height="44" viewBox="0 0 44 44"><polygon points="22,2 27,17 44,17 30,27 35,42 22,32 9,42 14,27 0,17 17,17" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg>
-        <svg class="d3" width="40" height="36" viewBox="0 0 40 36"><path d="M20 33 C20 33 2 22 2 10 C2 4 7 1 13 4 C16 5 18 8 20 10 C22 8 24 5 27 4 C33 1 38 4 38 10 C38 22 20 33 20 33Z" fill="none" stroke="#1a1a1a" stroke-width="2"/></svg>
-        <svg class="d5" width="60" height="24" viewBox="0 0 60 24"><path d="M0 12 C10 4, 20 20, 30 12 S50 4, 60 12" fill="none" stroke="#1a1a1a" stroke-width="2.5"/></svg>
+        <svg class="d2" width="44" height="44" viewBox="0 0 44 44"><polygon points="22,2 27,17 44,17 30,27 35,42 22,32 9,42 14,27 0,17 17,17" fill="none" stroke="#1a1a1a" stroke-width="1"/></svg>
+        <svg class="d3" width="40" height="36" viewBox="0 0 40 36"><path d="M20 33 C20 33 2 22 2 10 C2 4 7 1 13 4 C16 5 18 8 20 10 C22 8 24 5 27 4 C33 1 38 4 38 10 C38 22 20 33 20 33Z" fill="none" stroke="#1a1a1a" stroke-width="1"/></svg>
+        <svg class="d5" width="60" height="24" viewBox="0 0 60 24"><path d="M0 12 C10 4, 20 20, 30 12 S50 4, 60 12" fill="none" stroke="#1a1a1a" stroke-width="1.5"/></svg>
     </div>
 
-    <!-- หน้าแรก -->
+    <!-- หน้าแรก: สะอาดตา ไม่มี Tag -->
     <div class="card" id="landing-page">
-        <span class="label">✦ Caught you! ✦</span>
         <h2>ฮั่นแน่...<br>แอบเข้ามาส่องหรอ</h2>
         <p class="subtitle">แอบชอบปะเนี่ย? 👀</p>
         <button class="btn" onclick="startPrank()">ยอมรับมาซะดีๆ →</button>
     </div>
 
-    <!-- หน้าแกล้ง -->
+    <!-- หน้าแกล้ง: เน้นความคลีน -->
     <div class="card" id="prank-content">
-        <span class="label">✦ Gotcha! ✦</span>
         <h2 style="color: var(--accent);">เขินจัง... ☺</h2>
         <div class="gif-wrap">
-            <!-- ใส่ URL รูปภาพของคุณตรง src ด้านล่างนี้ -->
             <img src="shyface.jpg" alt="shy">
         </div>
-        <p style="font-family: 'Caveat', cursive; font-size: 18px;">หลักฐานคามือ ลบไม่ทันแล้วนะ!</p>
+        <p style="font-size: 15px; color: #666; font-weight: 300;">หลักฐานคามือ ลบไม่ทันแล้วนะ!</p>
         
         <audio id="bgMusic" loop>
             <source src="music.mp3" type="audio/mpeg">
@@ -188,10 +167,7 @@
             prank.style.display = 'block';
 
             try { 
-                const music = document.getElementById('bgMusic');
-                // ถ้าต้องการเลือกเวลาเริ่มเพลง ให้ใส่บรรทัดล่างนี้ (หน่วยเป็นวินาที)
-                // music.currentTime = 10; 
-                music.play(); 
+                document.getElementById('bgMusic').play(); 
             } catch(e) {}
         }
 
